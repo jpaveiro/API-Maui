@@ -1,6 +1,7 @@
 ﻿using API_Maui.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,7 @@ namespace API_Maui.Services
         public async Task<List<Post>> getPosts() {
 
             Uri uri = new Uri("https://jsonplaceholder.typicode.com/posts");
-            List<Post> items = new List<Post>();
+            ObservableCollection<Post> items = new ObservableCollection<Post>();
 
             try
             {
