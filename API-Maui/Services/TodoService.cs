@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace API_Maui.Services
 {
-    public class PostService
+    public class TodoService
     {
         private HttpClient? httpClient;
-        private Post? post;
-        private ObservableCollection<Post>? posts;
+        private Todo? todo;
+        private ObservableCollection<Todo>? todos;
         private JsonSerializerOptions? jsonSerializerOptions;
 
-        public PostService()
+        public TodoService()
         {
             jsonSerializerOptions = new JsonSerializerOptions
             {
@@ -27,10 +27,11 @@ namespace API_Maui.Services
             httpClient = new();
         }
 
-        public async Task<ObservableCollection<Post>> getPosts() {
+        public async Task<ObservableCollection<Todo>> getTodos()
+        {
 
-            Uri uri = new Uri("https://jsonplaceholder.typicode.com/posts");
-            ObservableCollection<Post> items = new();
+            Uri uri = new Uri("https://jsonplaceholder.typicode.com/todos");
+            ObservableCollection<Todo> items = new();
 
             try
             {
@@ -38,13 +39,14 @@ namespace API_Maui.Services
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    items = JsonSerializer.Deserialize<ObservableCollection<Post>>(content, jsonSerializerOptions);
+                    items = JsonSerializer.Deserialize<ObservableCollection<Todo>>(content, jsonSerializerOptions);
                 }
 
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 Debug.WriteLine(ex.Message);
-                
+
             }
             return items;
         }

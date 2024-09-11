@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,15 +8,16 @@ using System.Windows.Input;
 using API_Maui.Models;
 using API_Maui.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Maui.Controls;
 
 namespace API_Maui.ViewModels
 {
     public partial class PostViewModel : ObservableObject
     {
         [ObservableProperty]
-        List<Post>? posts;
+        ObservableCollection<Post>? posts;
 
-        private ICommand getPostsCommand { get; }
+        public ICommand getPostsCommand { get; }
 
         public PostViewModel()
         {
@@ -24,8 +26,8 @@ namespace API_Maui.ViewModels
 
         public async void getPosts()
         {
-            PostService postService = new();
-            posts = await postService.getPosts();
+            PostService PostService = new();
+            Posts = await PostService.getPosts();
         }
     }
 }

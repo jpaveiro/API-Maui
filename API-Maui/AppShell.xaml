@@ -7,9 +7,16 @@
     Shell.FlyoutBehavior="Disabled"
     Title="API_Maui">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:PostView}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Post"
+            ContentTemplate="{DataTemplate local:PostView}"
+            Route="MainPage" />
+        <ShellContent
+            Title="Todo"
+            ContentTemplate="{DataTemplate local:TodoView}"
+            Route="MainPage" />
+    </TabBar>
+
 
 </Shell>
